@@ -73,12 +73,7 @@
                             <h4 class="modal-title">Add task</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST">
-
-                                <div class="form-group">
-                                    <label>ID:</label>
-                                    <input type="integer" class="form-control" name="id" required="1">
-                                </div>
+                            <form action="{{url_for('insert')}}" method="POST">
 
                                 <div class="form-group">
                                     <label>Task:</label>
