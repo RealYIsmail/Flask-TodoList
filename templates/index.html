@@ -16,32 +16,35 @@
                 <table class="table table-hover table-dark">
                     <tr>
                         <th>ID</th>
-                        <th>To-do</th>
+                        <th>To-do task</th>
                         <th>Action</th>
                     </tr>
 
+                    {% for row in listedtask %}
+
+
                     <tr>
-                        <td>1</td>
-                        <td>Finish Application</td>
+                        <td>{{row.id}}</td>
+                        <td>{{row.task}}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#editmodal">Edit</a>
-                            <a href="" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            <a href="/edit/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#editmodal{{row.id}}">Edit</a>
+                            <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
                         </td>
                     </tr>
 
-                     <div id ="editmodal" class="modal fade" role="dialog">
+                     <div id ="editmodal{{row.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal=header">
                             <h4 class="modal-title">Edit task</h4>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST">
+                            <form action="{{url_for('edit')}}" method="POST">
 
                                 <div class="form-group">
                                     <label>Name:</label>
-                                    <input type="hidden" name="id" value="id">
-                                    <input type="text" class="form-control" name="name" value="Yonis">
+                                    <input type="hidden" name="id" value="{{row.id}}">
+                                    <input type="text" class="form-control" name="task" value="{{row.task}}">
                                 </div>
 
                                 <div class="form-group">
@@ -57,11 +60,7 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
+                    {% endfor %}
                 </table>
             </div>
 
